@@ -27,8 +27,29 @@
         )
   )
 
+(defn map-dna-nucleotide-to-rna [n]
+  (let [mapping
+        {
+         \G \C
+         \C \G
+         \T \A
+         \A \U}]
+    (if (contains? mapping n)
+        (mapping n)
+        (throw (AssertionError. (str "Unknown  nucleotide:" n))))))
+
+(defn dna-to-rna [dna]
+  (apply str (map map-dna-nucleotide-to-rna dna)))
 
 (comment
   (play :rock :paper)
   (play :paper :rock)
+
+  (re-matches #".*\.(\p{Alnum}+)" "lalala .123")
+
+
   )
+
+
+
+
